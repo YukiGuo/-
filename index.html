@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <script src="jq.js"></script>
+    <style>
+        *{padding: 0;margin: 0}
+        .con{width:70%;margin: auto;
+            position: relative;}
+        img{width:100%}
+        .img{position: absolute;  }
+        .logo{display: none}
+        .left,.right{background-color: rgba(0,0,0,0.6);color: white;cursor: pointer;
+            font-size: 40px;width: 40px  ;height: 60px;padding: 10px;text-align: center;line-height: 60px;
+        }
+        .right{
+            position: absolute;right:15%;top: 199px;margin-top: -30px}
+        .left{position: absolute; left: 15%;top: 199px;margin-top: -30px}
+        .tabs{width: 200px;height: 30px;
+            position: absolute;top: 470px;left: 50%;margin-left: -100px}
+        .tabs ul{line-height: 30px}
+        .tabs li{font-size:15px;display:block;list-style: none;float: left;height: 20px;
+            width: 20px;line-height: 20px;border-radius: 100%;
+            text-align: center;margin-right: 10px;cursor: pointer}
+        .tab{background-color: white}
+        .bg{background-color: #ff5a46
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+<div class="img" ><img src="img/pf1.jpg"></div>
+<div class="img"><img src="img/pf2.jpg"></div>
+<div class="img"><img src="img/pf3.jpg"></div>
+<div class="img"><img src="img/pf4.jpg"></div>
+<div class="img"><img src="img/pf5.jpg"></div>
+<div class="img"><img src="img/pf6.jpg"></div>
+</div>
+<div class="logo left"><</div>
+<div class=" logo right">></div>
+<div class="tabs">
+<ul>
+    <li class="tab bg">1</li>
+    <li class="tab">2</li>
+    <li class="tab">3</li>
+    <li class="tab">4</li>
+    <li class="tab">5</li>
+    <li class="tab">6</li>
+
+</ul>
+</div>
+<script>
+    var i=0;
+    var timer;
+$(function(){
+    //页面打开后第一张图显示，其他隐藏；
+    $(".img").eq(0).show().siblings().hide();
+    time();
+    //当鼠标hover 1,2,3,4,5,6时，首先索引当前索引值，赋值给I,显示当前图片。然后停止轮播；离开时开始轮播
+    $(".tab").hover(function(){
+        i=$(this).index();
+        show();
+        clearInterval(timer);
+    },function(){time()});
+    //箭头显示
+    $(".img").hover(function(){
+        $(".logo").show();
+    });
+    //向左箭头
+    $(".left").click(function(){
+        clearInterval(timer);
+        if(i== 0){i=6;}
+        i--;
+        show();
+        time();
+    });
+    //向右箭头
+    $(".right").click(function(){
+        clearInterval(timer);
+        if(i==5){i=-1;}
+        i++;
+        show();
+        time();
+    })
+});
+   function show(){
+    //当前图片显示，其他图片隐藏
+    $(".img").eq(i).fadeIn (500).siblings().fadeOut(500);
+    //当前tab变红色。其他移除红色
+    $(".tab").eq(i).addClass("bg").siblings().removeClass("bg");
+    }
+    //自动轮播，间隔4秒轮播； setInterval(function(){},time);间隔多长时间，执行一个事件
+     function time(){
+        timer=setInterval(function(){
+        if(i==5){i=-1}//注意5；
+        i++;
+        show();
+     },2000);}
+</script>
+
+</body>
+</html>
