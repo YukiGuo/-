@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>手风琴图片轮播</title>
+    <script src="jq.js"></script>
+    <style>
+        *{padding: 0;margin: 0;}
+        a{text-decoration: none}
+        .con{width: 1100px;height: 430px;margin:70px }
+        .con ul li {list-style: none;float: left;width: 100px;height:430px;overflow:hidden}
+        .pic1{background-image: url("img/timg1.jpg")}
+        .pic2{background-image: url("img/timg2.jpg")}
+        .pic3{background-image: url("img/timg3.jpg")}
+       .con ul .pic4{width:700px;background-image: url("img/timg4.jpg")}
+        .p{background-color: rgba(0,0,0,0.5); color: white;height: 430px;width:100px;text-align: center;
+        }
+        .title{ float:left; font-size: 14px;width:14px; padding: 25px 25px 0 20px;color: #ecffd5;font-weight: bold;
+        }
+        .txt{float:left;font-size: 12px;width: 12px;margin-top: 25px;color: #ecffd5
+        }
+    </style>
+</head>
+<body>
+<div class="con">
+    <ul>
+        <li class="pic1">
+        <a href="#">
+            <div class="p">
+            <p  class="title">秒速5厘米</p>
+            <p class="txt">	我要用什么样的速度，才能与你相遇？</p>
+            </div>
+        </a>
+        </li>
+        <li class="pic2">
+            <a href="#">
+                <div class="p">
+                    <p  class="title">言叶之庭</p>
+                    <p class="txt">鸣神の少しとよみて　さし昙り雨も降らんか　君を留めん</p>
+                </div>
+            </a>
+        </li>
+        <li class="pic3">
+            <a href="#">
+                <div class="p">
+                    <p  class="title">你的名字</p>
+                    <p class="txt">假如我们相遇，肯定一眼就能认出彼此</p>
+                </div>
+            </a>
+        </li>
+        <li class="pic4">
+            <a href="#">
+                <div class="p">
+                    <p  class="title">萤火之森</p>
+                    <p class="txt">无法触碰的爱恋，融化在一生一世的拥抱中。</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
+<script>
+    $(function(){
+        $(".con ul li").mouseover(function(){
+            $(this).stop(true).animate({width:"700px"},"swing" ).siblings().stop(true).animate({width:"100px"},"swing" )
+        });
+    });
+</script>
+</body>
+</html>
